@@ -1,10 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Portfolio</title>
-</head>
-<body>
-Portfolio
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ applicant_user.first_name }}'s Portfolio{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Portfolio for {{ applicant_user.first_name }} {{ applicant_user.last_name }}</h1>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3>Contact Information</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Username:</strong> {{ applicant_user.username }}</p>
+            <p><strong>Email:</strong> {{ applicant_user.email }}</p>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3>Portfolio Details</h3>
+        </div>
+        <div class="card-body">
+            {% if portfolio %}
+                <p><strong>Title:</strong> {{ portfolio.portfolio_title }}</p>
+                <p><strong>Description:</strong> {{ portfolio.portfolio_description|linebreaksbr }}</p>
+            {% else %}
+                <p class="text-muted">No portfolio details available for this user.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if portfolio.project %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <h3>Assigned Project: {{ portfolio.project.project_name }}</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Description:</strong> {{ portfolio.project.project_description|linebreaksbr }}</p>
+            <p><strong>Created At:</strong> {{ portfolio.project.created_at|date:"F j, Y, P" }}</p>
+            <p><strong>Last Updated:</strong> {{ portfolio.project.updated_at|date:"F j, Y, P" }}</p>
+        </div>
+    </div>
+    {% elif portfolio and not portfolio.project %}
+    <div class="alert alert-info" role="alert">
+        No project assigned to this portfolio.
+    </div>
+    {% endif %}
+
+    <a href="{% url 'PortfolioApp:applicant_list' %}" class="btn btn-secondary mt-3">Back to Applicants</a>
+{% endblock %}
