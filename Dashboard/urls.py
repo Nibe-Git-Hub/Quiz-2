@@ -16,13 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from DashboardApp import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.dashboard, name='dashboard' ),
-    path('dashboard/', views.dashboard, name='dashboard'),
-    path('portfolio/', views.portfolio, name='portfolio'),
-    path('list/', views.list, name='list'),
     path('', include('PortfolioApp.urls')),
 ]
