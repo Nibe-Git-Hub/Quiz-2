@@ -100,7 +100,6 @@ Quiz2_AbellaNicholasBenedictE._CPE202/
 └── db.sqlite3                  # SQLite database file (ignored by Git)
 └── manage.py                   # Django's command-line utility
 
-
 ---
 
 ## 3. Setup and Running the Project
