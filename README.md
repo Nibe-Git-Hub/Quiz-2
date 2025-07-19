@@ -50,13 +50,11 @@ Follow these steps to get the project running locally:
 2.  **Create & Activate Virtual Environment**:
     ```bash
     python -m venv .venv
-    # Windows: .venv\Scripts\activate
-    # macOS/Linux: source .venv/bin/activate
     ```
 
 3.  **Install Dependencies**:
     ```bash
-    pip install Django # Or pip install -r requirements.txt if you've created one
+    pip install Django 
     ```
 
 4.  **Apply Migrations**:
